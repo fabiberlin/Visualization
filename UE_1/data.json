@@ -1,0 +1,15 @@
+[
+ [
+    {"country": "Deutschland", "bip": 41267},
+    {"country": "Japan", "bip": 32480}
+ ],
+ 
+ [
+    {"country": "Polen", "bip": 12920},
+    {"country": "Libyen", "bip": 6085}
+ ],
+ [
+    {"country": "Russland", "bip": 8447},
+    {"country": "Namibia", "bip": 4318}
+ ] 
+]
