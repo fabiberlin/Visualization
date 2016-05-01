@@ -1,15 +1,28 @@
 [
- [
-    {"country": "Deutschland", "bip": 41267},
-    {"country": "Japan", "bip": 32480}
- ],
- 
- [
-    {"country": "Polen", "bip": 12920},
-    {"country": "Libyen", "bip": 6085}
- ],
- [
-    {"country": "Russland", "bip": 8447},
-    {"country": "Namibia", "bip": 4318}
- ] 
+    {
+        "description": "BIP pro Kopf - Polen vs. Libyen",
+        "values":
+        [
+            {"country": "Polen", "bip": 12920},
+            {"country": "Libyen", "bip": 6085}
+        ]
+    },
+
+    {
+        "description": "BIP pro Kopf - Deutschland vs Japan",
+        "values":
+        [
+            {"country": "Deutschland", "bip": 41267},
+            {"country": "Japan", "bip": 32480}
+        ]
+    },
+
+    {
+        "description": "BIP pro Kopf - Russland vs. Namibia",
+        "values":
+        [
+            {"country": "Russland", "bip": 8447},
+            {"country": "Namibia", "bip": 4318}
+        ]
+    }
 ]

@@ -2,14 +2,15 @@ function showData() {
     d3.json("/data.json", function (error, data) {
         console.log(data);
 
-        var datasetAll = data;
+        datasetAll = data;
 
         var width = 800;
         var height = 600;
         var padding = 40;
         var scaling = 0.01;
 
-        var dataset = datasetAll[dataIndex];
+        var dataset = datasetAll[dataIndex].values;
+        document.getElementById("heading").innerHTML=datasetAll[dataIndex].description;
         
         d3.select('div').selectAll('svg').remove();
 
@@ -58,16 +59,20 @@ document.getElementById("nextButton").addEventListener("click", function() {
     console.log("On Next Clicked");
     dataIndex++;
     showData();
+    //document.getElementById("heading").innerHTML=datasetAll[dataIndex].description;
 });
 
 document.getElementById("backButton").addEventListener("click", function() {
     console.log("On Back Clicked");
     dataIndex--;
     showData();
+    //document.getElementById("heading").innerHTML=datasetAll[dataIndex].description;
 });
 
+var datasetAll;
 var dataIndex = 0;
 showData();
+
 
 
 
