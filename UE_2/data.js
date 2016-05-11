@@ -9,6 +9,8 @@ var DATA = [
                 , "color": "blue"
                 , "form": "rect"
             }
+
+
             , {
                 "count": 20
                 , "color": "red"
@@ -16,6 +18,8 @@ var DATA = [
             }
         ]
     }
+
+
     , {
         "description": "Ist in der folgendenen Abbildung ein blaues Rechteck enthalten?"
         , "timeToShow": 400
