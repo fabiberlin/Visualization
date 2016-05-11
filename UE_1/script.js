@@ -1,5 +1,5 @@
 function showData() {
-    d3.json("/data.json", function (error, data) {
+    d3.json("data.json", function (error, data) {
         console.log(data);
 
         datasetAll = data;
