@@ -1,3 +1,17 @@
+class EvaluationItem {
+    constructor (isItemInside, duration, numberOfDifferentObjects, clickedResult){
+        this.isItemInside = isItemInside;
+        this.duration = duration;
+        this.numberOfDifferentObjects = numberOfDifferentObjects;
+        this.clickedResult = clickedResult;
+    }
+
+    toString(){
+        var rep = "Item was inside: " + this.isItemInside + " |||| " + "Duration: " + this.duration + " |||| " + "Number of different objects: " + this.numberOfDifferentObjects + " |||| " + "You clicked on: " + this.clickedResult;
+        return rep;
+    }
+}
+
 class Glyph {
     constructor(form, color) {
         this.x = 0;
@@ -51,6 +65,7 @@ var indexOfTest = 0;
 var delayAfterOK = 1000;
 var globalDimension = 40
 var margin = 30
+var evaluation = [];
 
 function main() {
     console.log("Yeah");
@@ -133,7 +148,7 @@ function drawCircle(circle) {
 }
 
 function clear() {
-    d3.select('div').selectAll('svg').remove();
+    d3.select('#vis').selectAll('svg').remove();
     svgElement = d3.select('div').append('svg').attr({
         'width': width
         , 'height': height
@@ -154,14 +169,62 @@ function showEvaluationButtons() {
 
 function onYesClicked() {
     console.log("On Yes Clicked");
+    evaluationitem = new EvaluationItem(data[indexOfTest].isObjectContained, data[indexOfTest].timeToShow, data[indexOfTest].objectsToDraw.length, "Yes");
+    evaluation.push(evaluationitem);
+    nextVisulisation();
 }
 
 function onNoClicked() {
     console.log("On No Clicked");
+    evaluationitem = new EvaluationItem(data[indexOfTest].isObjectContained, data[indexOfTest].timeToShow, data[indexOfTest].objectsToDraw.length, "No");
+    evaluation.push(evaluationitem);
+    nextVisulisation();
 }
 
 function onNotSeenClicked() {
     console.log("On Not Seen Clicked");
+    evaluationitem = new EvaluationItem(data[indexOfTest].isObjectContained, data[indexOfTest].timeToShow, data[indexOfTest].objectsToDraw.length, "Unknown");
+    evaluation.push(evaluationitem);
+    nextVisulisation();
+}
+
+function nextVisulisation() {
+    if (indexOfTest == data.length - 1) {
+        showResult();
+    } else {
+        hideEvaluationButtons();
+        indexOfTest++;
+        document.getElementById("decriptionText").textContent = data[indexOfTest].description;
+        okButton.style.display = "inline";
+    }
+}
+
+function showResult() {
+    hideEvaluationButtons();
+    okButton.style.display = "none";
+    document.getElementById("decriptionText").textContent = "Auswertung";
+    document.getElementById("vis").style.display = "none";
+    d3.select('#vis').selectAll('svg').remove();
+
+    evaluationDiv = document.getElementById("evaluation");
+
+
+    for (i = 0; i < evaluation.length; i++) {
+        node = document.createElement("P");
+        textnode = document.createTextNode("#"+i+" |||| "+evaluation[i].toString());
+        node.appendChild(textnode);
+        node.style.padding = 10
+        node.style.margin = 2
+
+        if(evaluation[i].isItemInside && evaluation[i].clickedResult == "Yes"){
+            node.style.backgroundColor = "99FF00";
+        }
+        else{
+            node.style.backgroundColor = "FF9999";
+        }
+
+        evaluationDiv.appendChild(node);
+    }
 }
 
 function onOkClicked() {
@@ -171,16 +234,9 @@ function onOkClicked() {
     setTimeout(function () {
         showTestVisualization()
 
-        aRect = new Glyph("rect", "red");
-        aRect.x = 40;
-        aRect.y = 40;
-
-        console.log(aRect.hidesEachOther(110, 40, 80));
-
         setTimeout(function () {
             clear()
             showEvaluationButtons()
-
 
         }, delay);
 
