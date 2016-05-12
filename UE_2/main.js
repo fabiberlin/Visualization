@@ -216,7 +216,7 @@ function showResult() {
         node.style.padding = 10
         node.style.margin = 2
 
-        if(evaluation[i].isItemInside && evaluation[i].clickedResult == "Yes"){
+        if((evaluation[i].isItemInside && evaluation[i].clickedResult == "Yes") || !evaluation[i].isItemInside && evaluation[i].clickedResult == "No"){
             node.style.backgroundColor = "99FF00";
         }
         else{
