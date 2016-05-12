@@ -23,13 +23,13 @@ class Glyph {
     }
 
     hidesOtherGlyphs(glyphs) {
-        console.log("hidesOtherGlyphs:")
-        console.log(glyphs)
-        console.log(glyphs.length)
-        console.log(this)
+        //console.log("hidesOtherGlyphs:")
+        //console.log(glyphs)
+        //console.log(glyphs.length)
+        //console.log(this)
         for (var m = 0; m < glyphs.length; m++) {
             if (this.hidesEachOther(glyphs[m])) {
-                console.log("HIDES One of the Other Glyphs!");
+                //console.log("HIDES One of the Other Glyphs!");
                 return true;
             }
         }
@@ -38,7 +38,7 @@ class Glyph {
 
     hidesEachOther(glyph) {
         if (Math.abs(this.x - glyph.x) <= (this.dim / 2 + glyph.dim / 2) && Math.abs(this.y - glyph.y) <= (this.dim / 2 + glyph.dim / 2)) {
-            console.log("HIDES Each Other!");
+            //console.log("HIDES Each Other!");
             return true;
         } else {
             return false;
@@ -68,7 +68,7 @@ var margin = 30
 var evaluation = [];
 
 function main() {
-    console.log("Yeah");
+    //console.log("Yeah");
 
     yesButton = document.getElementById("yesButton")
     yesButton.addEventListener("click", onYesClicked);
@@ -85,7 +85,7 @@ function main() {
     hideEvaluationButtons()
 
     data = DATA;
-    console.log(data);
+    //console.log(data);
 
     clear();
 
@@ -102,13 +102,13 @@ function showTestVisualization() {
             aGlyph = new Glyph(objects.form, objects.color);
 
             while (aGlyph.hidesOtherGlyphs(glyphs)) {
-                console.log("Calculate new position")
+                //console.log("Calculate new position")
                 aGlyph.randomizePosition();
             }
 
             glyphs.push(aGlyph);
         }
-        console.log(glyphs);
+        //console.log(glyphs);
         drawGlyphs(glyphs);
     }
 }
@@ -168,21 +168,21 @@ function showEvaluationButtons() {
 }
 
 function onYesClicked() {
-    console.log("On Yes Clicked");
+    //console.log("On Yes Clicked");
     evaluationitem = new EvaluationItem(data[indexOfTest].isObjectContained, data[indexOfTest].timeToShow, data[indexOfTest].objectsToDraw.length, "Yes");
     evaluation.push(evaluationitem);
     nextVisulisation();
 }
 
 function onNoClicked() {
-    console.log("On No Clicked");
+    //console.log("On No Clicked");
     evaluationitem = new EvaluationItem(data[indexOfTest].isObjectContained, data[indexOfTest].timeToShow, data[indexOfTest].objectsToDraw.length, "No");
     evaluation.push(evaluationitem);
     nextVisulisation();
 }
 
 function onNotSeenClicked() {
-    console.log("On Not Seen Clicked");
+    //console.log("On Not Seen Clicked");
     evaluationitem = new EvaluationItem(data[indexOfTest].isObjectContained, data[indexOfTest].timeToShow, data[indexOfTest].objectsToDraw.length, "Unknown");
     evaluation.push(evaluationitem);
     nextVisulisation();
@@ -228,7 +228,7 @@ function showResult() {
 }
 
 function onOkClicked() {
-    console.log("On Ok Clicked");
+    //console.log("On Ok Clicked");
     okButton.style.display = "none";
     delay = data[indexOfTest].timeToShow;
     setTimeout(function () {
