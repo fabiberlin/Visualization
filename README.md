@@ -1,3 +1,3 @@
 # Visualization
 
-Repo for the Module "Visualization" at the HTW Berlin (2016)
+Repo for the course "Visualization" at the HTW Berlin (2016)
