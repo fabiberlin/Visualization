@@ -1,17 +1,33 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-    <link href="normalize.css" type="text/css" rel="stylesheet">
     <title>Visualization UE 3</title>
-    <script src="d3.js" charset="utf-8"></script>
-    <script src="data.js"></script>
+
+    <meta charset="utf-8">
+
+    <link href="normalize.css" type="text/css" rel="stylesheet">
+    <link href="stylesheet.css" type="text/css" rel="stylesheet">
+
+    <script src="js/d3.js" charset="utf-8"></script>
+    <script src="js/data.js"></script>
+    <script src="js/glyph.js"></script>
+    <script src="js/car.js"></script>
+    <script src="js/range.js"></script>
+    <script src="js/datasheet.js"></script>
+    <script src="js/const.js"></script>
 
 </head>
 
 <body>
-    <h1 id="heading">UE 3</h1>
-    <div id="vis"></div>
-    <script src="main.js"></script>
+    <div id="vis" ></div>
+
+    <div id="overlay">
+        <p>UE 3</p>
+        <button id="okButton">Ok, lets go</button>
+    </div>
+
+    <script src="js/main.js"></script>
 </body>
 
 </html>
