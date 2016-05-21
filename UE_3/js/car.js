@@ -51,5 +51,26 @@ Car.prototype = {
     setPosition: function (x, y) {
         this.svg[0][0].cx.baseVal.value = x;
         this.svg[0][0].cy.baseVal.value = y;
+    },
+
+    setX: function (x) {
+        this.svg[0][0].cx.baseVal.value = x;
+    },
+
+    setY: function (y) {
+        this.svg[0][0].cy.baseVal.value = y;
+    },
+
+    getX: function () {
+        return this.svg[0][0].cx.baseVal.value;
+    },
+
+    getY: function () {
+        return this.svg[0][0].cy.baseVal.value;
+    },
+
+    scale: function (scale){
+        //console.log(this.svg[0][0].r.baseVal.value);
+        this.svg[0][0].r.baseVal.value = scale;
     }
 };

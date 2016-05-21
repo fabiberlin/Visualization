@@ -11,8 +11,8 @@ function main() {
     width = window.innerWidth - 0;
     height = window.innerHeight - 4;
     clear();
-    glyph = new Glyph("black", 5);
-    drawCircle(glyph);
+
+    document.getElementById("overlay").addEventListener("mousemove", handleMouseMove);
 
     cars = [];
 
@@ -32,6 +32,11 @@ function main() {
     console.log(range.mean);
 
     dataSheet = new DataSheet(cars, svgElement);
+}
+
+function handleMouseMove(event){
+    console.log("Mouse Move   "+event.clientX+"   "+event.clientY);
+    dataSheet.hoverElements(event.clientX, event.clientY);
 }
 
 function onOkClicked() {

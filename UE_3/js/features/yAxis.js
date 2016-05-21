@@ -1,13 +1,13 @@
-function XAxis(carsArr) {
+function YAxis(carsArr) {
     this.cars = carsArr;
     this.enabled = false;
     this.featureName = "";
     this.range = null;
 }
 
-XAxis.prototype = {
+YAxis.prototype = {
 
-    constructor: XAxis,
+    constructor: YAxis,
 
     enable: function () {
         this.enabled = true;
@@ -24,14 +24,14 @@ XAxis.prototype = {
 
     update: function () {
         for (i = 0; i < this.cars.length; i++) {
-            xValue = this.calcValue(this.cars[i][this.featureName]);
-            this.cars[i].setX(xValue);
+            yValue = this.calcValue(this.cars[i][this.featureName]);
+            this.cars[i].setY(yValue);
 
         }
     },
 
     calcValue: function (input) {
-        output = ((width - rightMargin - leftMargin) / (this.range.max - this.range.min)) * (input - this.range.min) + leftMargin;
+        output = ((upperMargin-height-lowerMargin) / (this.range.max - this.range.min)) * (input - this.range.min) + (height-lowerMargin);
         return output;
     }
 
