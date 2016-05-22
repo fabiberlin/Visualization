@@ -72,5 +72,9 @@ Car.prototype = {
     scale: function (scale){
         //console.log(this.svg[0][0].r.baseVal.value);
         this.svg[0][0].r.baseVal.value = scale;
+    },
+
+    getShortSting: function () {
+        return this.manufacturer + " " + this.car;
     }
 };

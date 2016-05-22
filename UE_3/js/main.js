@@ -24,13 +24,7 @@ function main() {
         cars.push(aCar);
     }
 
-    //console.log(cars);
-
-    range = new Range("mpg", cars);
-
-    console.log(range.min);
-    console.log(range.max);
-    console.log(range.mean);
+    console.log(allDataFields);
 
     dataSheet = new DataSheet(cars, svgElement);
 }
