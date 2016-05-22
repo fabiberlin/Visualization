@@ -5,9 +5,6 @@ var dataSheet;
 
 function main() {
 
-    okButton = document.getElementById("okButton")
-    okButton.addEventListener("click", onOkClicked);
-
     width = window.innerWidth - 0;
     height = window.innerHeight - 4;
 
@@ -16,6 +13,7 @@ function main() {
     document.getElementById("overlay").addEventListener("mousemove", handleMouseMove);
     document.getElementById("overlay").addEventListener("mousedown", handleMouseDown);
 
+    document.getElementById("SelectionBar").style.transform = "translate(" + (width - rightMargin + 50) + "px," + upperMargin + "px)";
     cars = [];
 
     for (i = 0; i < data.length; i++) {
@@ -28,29 +26,30 @@ function main() {
     dataSheet.update();
 }
 
-function handleMouseMove(event){
+function handleMouseMove(event) {
     dataSheet.hoverElements(event.clientX, event.clientY);
 }
 
-function handleMouseDown(event){
-    console.log("Mouse Down   "+event.clientX+"   "+event.clientY);
+function handleMouseDown(event) {
+    console.log("Mouse Down   " + event.clientX + "   " + event.clientY);
     dataSheet.showInformationLabel(event.clientX, event.clientY);
 }
 
-function onOkClicked() {
-    console.log("On Ok Clicked");
-    dataSheet.update();
-}
-
-function xAxisChanged(element){
+function xAxisChanged(element) {
     console.log("xAxisChanged " + element);
     dataSheet.setXAxis(element);
     dataSheet.update();
 }
 
-function yAxisChanged(element){
+function yAxisChanged(element) {
     console.log("yAxisChanged " + element);
     dataSheet.setYAxis(element);
+    dataSheet.update();
+}
+
+function colorChanged(color) {
+    console.log("colorChanged " + color);
+    dataSheet.setColor(color);
     dataSheet.update();
 }
 
@@ -72,5 +71,11 @@ function clear() {
         , 'height': height
     });
 }
+
+var slider = new Slider("#ex1");
+slider.on("slide", function (slideEvt) {
+    $("#ex6SliderVal").text(slideEvt.value);
+    console.log("Slider Chaned to: "+slideEvt);
+});
 
 main();

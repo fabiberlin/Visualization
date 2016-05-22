@@ -1,8 +1,6 @@
 function DataSheet(carsArr) {
     this.cars = carsArr;
     this.ranges = [];
-    console.log("datafieldsNumber.length " + datafieldsNumber.length);
-
     this.ranges.push(new Range("mpg", this.cars));
     this.ranges.push(new Range("cylinders", this.cars));
     this.ranges.push(new Range("displacement", this.cars));
@@ -12,10 +10,12 @@ function DataSheet(carsArr) {
     this.ranges.push(new Range("modelYear", this.cars));
 
     console.log(this.ranges);
-    this.xAxisFeature = new XAxis(this.cars);
+    this.xAxisFeature = new XAxisFeature(this.cars);
     this.xAxisFeature.setFeature("weight");
-    this.yAxisFeature = new YAxis(this.cars);
+    this.yAxisFeature = new YAxisFeature(this.cars);
     this.yAxisFeature.setFeature("horsepower");
+    this.colorFeature = new ColorFeature(this.cars);
+    this.colorFeature.setFeature("mpg");
 }
 
 DataSheet.prototype = {
@@ -25,6 +25,7 @@ DataSheet.prototype = {
     update: function () {
         this.xAxisFeature.update();
         this.yAxisFeature.update();
+        this.colorFeature.update();
     },
 
     setXAxis: function (feature) {
@@ -33,6 +34,10 @@ DataSheet.prototype = {
 
     setYAxis: function (feature) {
         this.yAxisFeature.setFeature(feature);
+    },
+
+    setColor: function (feature) {
+        this.colorFeature.setFeature(feature);
     },
 
     hoverElements: function (x, y) {
@@ -71,9 +76,12 @@ DataSheet.prototype = {
             infoDiv.style.visibility = "visible"; //hidden
             infoDiv.style.left = "" + (car.getX() + 0) + "px";
             infoDiv.style.top = "" + (car.getY() - 0) + "px";
+            if(y>height/2){
+                infoDiv.style.top = "" + (car.getY() - 205) + "px";
+            }
             for (i = 0; i < allDataFields.length; i++) {
                 infospan = document.getElementById("info_"+allDataFields[i]);
-                infospan.textContent = car[allDataFields[i]];
+                infospan.textContent = roundValues(allDataFields[i], car[allDataFields[i]]);
             }
 
         } else {

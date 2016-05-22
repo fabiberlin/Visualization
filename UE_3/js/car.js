@@ -69,6 +69,10 @@ Car.prototype = {
         return this.svg[0][0].cy.baseVal.value;
     },
 
+    setColor:function (hex) {
+        this.svg.attr('style', "fill:"+hex);
+    },
+
     scale: function (scale){
         //console.log(this.svg[0][0].r.baseVal.value);
         this.svg[0][0].r.baseVal.value = scale;

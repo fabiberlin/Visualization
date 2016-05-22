@@ -1,13 +1,13 @@
-function XAxis(carsArr) {
+function XAxisFeature(carsArr) {
     this.cars = carsArr;
     this.enabled = false;
     this.featureName = "";
     this.range = null;
 }
 
-XAxis.prototype = {
+XAxisFeature.prototype = {
 
-    constructor: XAxis,
+    constructor: XAxisFeature,
 
     enable: function () {
         this.enabled = true;
@@ -20,6 +20,7 @@ XAxis.prototype = {
     setFeature: function (featureName) {
         this.featureName = featureName;
         this.range = new Range(featureName, this.cars);
+        document.getElementById("chosen_xAxis").textContent = this.range.getFriendlyName();
     },
 
     update: function () {
@@ -37,7 +38,8 @@ XAxis.prototype = {
 
     drawAxis: function () {
 
-        d3.select("#xAxisLabel").remove();
+        d3.select("#xAxisLabelName").remove();
+        d3.select("#xAxisLabelUnit").remove();
         d3.select("#xAxis").remove();
 
         var axisScale = d3.scale.linear()
@@ -55,9 +57,16 @@ XAxis.prototype = {
 
         var xAxisLabel = svgElement.append("text")      // text label for the x axis
         .attr("x", (width-leftMargin)/2 )
-        .attr("id","xAxisLabel")
+        .attr("id","xAxisLabelName")
         .attr("y",  (height - lowerMargin + 50) )
         .style("text-anchor", "middle")
-        .text(this.featureName);
+        .text(this.range.getFriendlyName());
+
+        var xAxisLabelUnit = svgElement.append("text")      // text label for the x axis
+        .attr("x", (width-leftMargin)/2 )
+        .attr("id","xAxisLabelUnit")
+        .attr("y",  (height - lowerMargin + 70) )
+        .style("text-anchor", "middle")
+        .text("in ["+this.range.getMeasureUnit()+"]");
     }
 };

@@ -9,9 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.2/css/bootstrap-slider.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.2/bootstrap-slider.js"></script>
 
     <link href="stylesheet.css" type="text/css" rel="stylesheet">
 
@@ -22,53 +24,104 @@
     <script src="js/range.js"></script>
     <script src="js/datasheet.js"></script>
     <script src="js/const.js"></script>
-    <script src="js/features/xAxis.js"></script>
-    <script src="js/features/yAxis.js"></script>
+    <script src="js/helper.js"></script>
+    <script src="js/features/xAxisFeature.js"></script>
+    <script src="js/features/yAxisFeature.js"></script>
+    <script src="js/features/colorFeature.js"></script>
 
 </head>
 
 <body>
+
     <div id="vis"></div>
 
     <div id="overlay">
 
-        <button id="okButton">Ok, lets go</button>
+        <div id="SelectionBar" style="display: inline-block">
 
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">X-Axis
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a href="#" onclick="xAxisChanged('mpg')">mpg</a></li>
-                <li><a href="#" onclick="xAxisChanged('cylinders')">cylinders</a></li>
-                <li><a href="#" onclick="xAxisChanged('displacement')">displacement</a></li>
-                <li><a href="#" onclick="xAxisChanged('horsepower')">horsepower</a></li>
-                <li><a href="#" onclick="xAxisChanged('weight')">weight</a></li>
-                <li><a href="#" onclick="xAxisChanged('acceleration')">acceleration</a></li>
-                <li><a href="#" onclick="xAxisChanged('modelYear')">modelYear</a></li>
-            </ul>
+            <div class="panel panel-default">
+                <div class="panel-heading">General Data Size</div>
+                <div class="panel-body" style="padding:0">
+
+
+                    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="1" data-slider-max="20" data-slider-step="0.5" data-slider-value="5" />
+
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">X Axis</div>
+                <div class="panel-body" style="padding:0">
+                    <div id="xAxisSelector" class="dropdown">
+                        <p id="chosen_xAxis" style="display: inline-block; padding:10px">Choosen Feature</p>
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onclick="xAxisChanged('mpg')">Consumption</a></li>
+                            <li><a href="#" onclick="xAxisChanged('cylinders')">Cylinders</a></li>
+                            <li><a href="#" onclick="xAxisChanged('displacement')">Displacement</a></li>
+                            <li><a href="#" onclick="xAxisChanged('horsepower')">Horsepower</a></li>
+                            <li><a href="#" onclick="xAxisChanged('weight')">Weight</a></li>
+                            <li><a href="#" onclick="xAxisChanged('acceleration')">Acceleration</a></li>
+                            <li><a href="#" onclick="xAxisChanged('modelYear')">Model Year</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Y Axis</div>
+                <div class="panel-body" style="padding:0">
+                    <div id="yAxisSelector" class="dropdown">
+                        <p id="chosen_yAxis" style="display: inline-block; padding:10px">Choosen Feature</p>
+
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onclick="yAxisChanged('mpg')">Consumption</a></li>
+                            <li><a href="#" onclick="yAxisChanged('cylinders')">Cylinders</a></li>
+                            <li><a href="#" onclick="yAxisChanged('displacement')">Displacement</a></li>
+                            <li><a href="#" onclick="yAxisChanged('horsepower')">Horsepower</a></li>
+                            <li><a href="#" onclick="yAxisChanged('weight')">Weight</a></li>
+                            <li><a href="#" onclick="yAxisChanged('acceleration')">Acceleration</a></li>
+                            <li><a href="#" onclick="yAxisChanged('modelYear')">Model Year</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Color</div>
+                <div class="panel-body" style="padding:0">
+                    <div id="colorSelector" class="dropdown">
+                        <p style="display: inline-block; padding:10px">Choosen Feature</p>
+
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onclick="colorChanged('none')">None</a></li>
+                            <li><a href="#" onclick="colorChanged('mpg')">Consumption</a></li>
+                            <li><a href="#" onclick="colorChanged('cylinders')">Cylinders</a></li>
+                            <li><a href="#" onclick="colorChanged('displacement')">Displacement</a></li>
+                            <li><a href="#" onclick="colorChanged('horsepower')">Horsepower</a></li>
+                            <li><a href="#" onclick="colorChanged('weight')">Weight</a></li>
+                            <li><a href="#" onclick="colorChanged('acceleration')">Acceleration</a></li>
+                            <li><a href="#" onclick="colorChanged('modelYear')">Model Year</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-         <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Y-Axis
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a href="#" onclick="yAxisChanged('mpg')">mpg</a></li>
-                <li><a href="#" onclick="yAxisChanged('cylinders')">cylinders</a></li>
-                <li><a href="#" onclick="yAxisChanged('displacement')">displacement</a></li>
-                <li><a href="#" onclick="yAxisChanged('horsepower')">horsepower</a></li>
-                <li><a href="#" onclick="yAxisChanged('weight')">weight</a></li>
-                <li><a href="#" onclick="yAxisChanged('acceleration')">acceleration</a></li>
-                <li><a href="#" onclick="yAxisChanged('modelYear')">modelYear</a></li>
-            </ul>
-        </div>
-
     </div>
 
-    <div id = "hoverLabel">
+    <div id="hoverLabel">
         <span id="hover_car">data</span>
     </div>
 
-    <div id = "informationLabel">
+    <div id="informationLabel">
         <p>Manufacturer: <span id="info_manufacturer">data</span></p>
         <p>Car: <span id="info_car">data</span></p>
         <p>Consumption: <span id="info_mpg">data</span></p>

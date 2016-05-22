@@ -1,13 +1,13 @@
-function YAxis(carsArr) {
+function YAxisFeature(carsArr) {
     this.cars = carsArr;
     this.enabled = false;
     this.featureName = "";
     this.range = null;
 }
 
-YAxis.prototype = {
+YAxisFeature.prototype = {
 
-    constructor: YAxis,
+    constructor: YAxisFeature,
 
     enable: function () {
         this.enabled = true;
@@ -20,6 +20,7 @@ YAxis.prototype = {
     setFeature: function (featureName) {
         this.featureName = featureName;
         this.range = new Range(featureName, this.cars);
+        document.getElementById("chosen_yAxis").textContent = this.range.getFriendlyName();
     },
 
     update: function () {
@@ -40,28 +41,35 @@ YAxis.prototype = {
     drawAxis: function () {
 
         d3.select("#yAxisLabel").remove();
+        d3.select("#yAxisLabelUnit").remove();
         d3.select("#yAxis").remove();
 
         var axisScale = d3.scale.linear()
             .domain([this.range.min, this.range.max])
-            .range([height-lowerMargin, upperMargin]);
+            .range([height - lowerMargin, upperMargin]);
 
         var yAxis = d3.svg.axis()
             .orient("left")
             .scale(axisScale);
 
         var yAxisGroup = svgElement.append("g")
-            .attr("transform", "translate("+(leftMargin - 10)+",0)")
+            .attr("transform", "translate(" + (leftMargin - 10) + ",0)")
             //.attr("transform", "translate(0," + (height - lowerMargin + 10) + ")")
             .attr("id", "yAxis")
             .call(yAxis);
 
         var yAxisLabel = svgElement.append("text") // text label for the x axis
             .attr("x", leftMargin - 100)
-            .attr("y", (height-upperMargin)/2)
+            .attr("y", (height - upperMargin) / 2)
             .attr("id", "yAxisLabel")
             .style("text-anchor", "middle")
-            .text(this.featureName);
-    }
+            .text(this.range.getFriendlyName());
 
+        var yAxisLabelUnit = svgElement.append("text") // text label for the x axis
+            .attr("x", leftMargin - 100)
+            .attr("y", ((height - upperMargin) / 2) + 20)
+            .attr("id", "yAxisLabelUnit")
+            .style("text-anchor", "middle")
+            .text("in [" + this.range.getMeasureUnit() + "]");
+    }
 };

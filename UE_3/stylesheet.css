@@ -9,7 +9,7 @@
 
 #hoverLabel {
     position: absolute;
-    z-index: 2;
+    z-index: 4;
     top: 0;
     left: 0;
     display: inline-block;
@@ -20,7 +20,7 @@
 
 #informationLabel {
     position: absolute;
-    z-index: 2;
+    z-index: 4;
     top: 0;
     left: 0;
     display: inline-block;
@@ -32,4 +32,8 @@
 #informationLabel p {
     padding: 0;
     margin: 0;
+}
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
 }
