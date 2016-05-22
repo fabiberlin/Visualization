@@ -10,6 +10,7 @@ function main() {
 
     width = window.innerWidth - 0;
     height = window.innerHeight - 4;
+
     clear();
 
     document.getElementById("overlay").addEventListener("mousemove", handleMouseMove);
@@ -23,14 +24,11 @@ function main() {
         aCar.svg = this.drawCircle(new Glyph("black", 5));
         cars.push(aCar);
     }
-
-    console.log(allDataFields);
-
     dataSheet = new DataSheet(cars, svgElement);
+    dataSheet.update();
 }
 
 function handleMouseMove(event){
-    //console.log("Mouse Move   "+event.clientX+"   "+event.clientY);
     dataSheet.hoverElements(event.clientX, event.clientY);
 }
 
