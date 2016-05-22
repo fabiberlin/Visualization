@@ -30,8 +30,9 @@ YAxis.prototype = {
         }
     },
 
-    calcValue: function (input) {
-        output = ((upperMargin-height-lowerMargin) / (this.range.max - this.range.min)) * (input - this.range.min) + (height-lowerMargin);
+    calcValue: function (input) { //TODO FIX -100 Upper Problem
+        output = (((upperMargin-height+lowerMargin) * (input - this.range.min)) / (this.range.max - this.range.min)) + (height-lowerMargin);
+        console.log(output);
         return output;
     }
 

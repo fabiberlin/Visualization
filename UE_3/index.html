@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="de-DE">
 
 <head>
     <title>Visualization UE 3</title>
 
     <meta charset="utf-8">
 
-    <link href="normalize.css" type="text/css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
     <link href="stylesheet.css" type="text/css" rel="stylesheet">
 
     <script src="js/d3.js" charset="utf-8"></script>
@@ -22,11 +28,26 @@
 </head>
 
 <body>
-    <div id="vis" ></div>
+    <div id="vis"></div>
 
     <div id="overlay">
         <p>UE 3</p>
         <button id="okButton">Ok, lets go</button>
+
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">X-Axis
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="#" onclick="xAxisChanged">mpg</a></li>
+                <li><a href="#" onclick="xAxisChanged">cylinders</a></li>
+                <li><a href="#" onclick="xAxisChanged">displacement</a></li>
+                <li><a href="#" onclick="xAxisChanged">horsepower</a></li>
+                <li><a href="#" onclick="xAxisChanged">weight</a></li>
+                <li><a href="#" onclick="xAxisChanged">acceleration</a></li>
+                <li><a href="#" onclick="xAxisChanged">modelYear</a></li>
+            </ul>
+        </div>
+
     </div>
 
     <div id="hoverLabel">

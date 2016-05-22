@@ -13,6 +13,7 @@ function main() {
     clear();
 
     document.getElementById("overlay").addEventListener("mousemove", handleMouseMove);
+    document.getElementById("overlay").addEventListener("mousedown", handleMouseDown);
 
     cars = [];
 
@@ -35,8 +36,13 @@ function main() {
 }
 
 function handleMouseMove(event){
-    console.log("Mouse Move   "+event.clientX+"   "+event.clientY);
+    //console.log("Mouse Move   "+event.clientX+"   "+event.clientY);
     dataSheet.hoverElements(event.clientX, event.clientY);
+}
+
+function handleMouseDown(event){
+    console.log("Mouse Down   "+event.clientX+"   "+event.clientY);
+    dataSheet.showInformationBox(event.clientX, event.clientY);
 }
 
 function onOkClicked() {
