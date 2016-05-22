@@ -31,27 +31,45 @@
     <div id="vis"></div>
 
     <div id="overlay">
-        <p>UE 3</p>
+        <p> i </p>
         <button id="okButton">Ok, lets go</button>
 
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">X-Axis
                 <span class="caret"></span></button>
             <ul class="dropdown-menu">
-                <li><a href="#" onclick="xAxisChanged">mpg</a></li>
-                <li><a href="#" onclick="xAxisChanged">cylinders</a></li>
-                <li><a href="#" onclick="xAxisChanged">displacement</a></li>
-                <li><a href="#" onclick="xAxisChanged">horsepower</a></li>
-                <li><a href="#" onclick="xAxisChanged">weight</a></li>
-                <li><a href="#" onclick="xAxisChanged">acceleration</a></li>
-                <li><a href="#" onclick="xAxisChanged">modelYear</a></li>
+                <li><a href="#" onclick="xAxisChanged('mpg')">mpg</a></li>
+                <li><a href="#" onclick="xAxisChanged('cylinders')">cylinders</a></li>
+                <li><a href="#" onclick="xAxisChanged('displacement')">displacement</a></li>
+                <li><a href="#" onclick="xAxisChanged('horsepower')">horsepower</a></li>
+                <li><a href="#" onclick="xAxisChanged('weight')">weight</a></li>
+                <li><a href="#" onclick="xAxisChanged('acceleration')">acceleration</a></li>
+                <li><a href="#" onclick="xAxisChanged('modelYear')">modelYear</a></li>
+            </ul>
+        </div>
+
+         <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Y-Axis
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="#" onclick="yAxisChanged('mpg')">mpg</a></li>
+                <li><a href="#" onclick="yAxisChanged('cylinders')">cylinders</a></li>
+                <li><a href="#" onclick="yAxisChanged('displacement')">displacement</a></li>
+                <li><a href="#" onclick="yAxisChanged('horsepower')">horsepower</a></li>
+                <li><a href="#" onclick="yAxisChanged('weight')">weight</a></li>
+                <li><a href="#" onclick="yAxisChanged('acceleration')">acceleration</a></li>
+                <li><a href="#" onclick="yAxisChanged('modelYear')">modelYear</a></li>
             </ul>
         </div>
 
     </div>
 
-    <div id="hoverLabel">
-        <p>SomeLabelingText</p>
+    <div id = "hoverLabel">
+        <p>SomeHoverLabelingText</p>
+    </div>
+
+    <div id = "informationLabel">
+        <p>SomeInformationLabelingText</p>
     </div>
 
     <script src="js/main.js"></script>

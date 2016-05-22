@@ -42,11 +42,23 @@ function handleMouseMove(event){
 
 function handleMouseDown(event){
     console.log("Mouse Down   "+event.clientX+"   "+event.clientY);
-    dataSheet.showInformationBox(event.clientX, event.clientY);
+    dataSheet.showInformationLabel(event.clientX, event.clientY);
 }
 
 function onOkClicked() {
     console.log("On Ok Clicked");
+    dataSheet.update();
+}
+
+function xAxisChanged(element){
+    console.log("xAxisChanged " + element);
+    dataSheet.setXAxis(element);
+    dataSheet.update();
+}
+
+function yAxisChanged(element){
+    console.log("yAxisChanged " + element);
+    dataSheet.setYAxis(element);
     dataSheet.update();
 }
 

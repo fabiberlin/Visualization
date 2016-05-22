@@ -23,14 +23,16 @@ DataSheet.prototype = {
     constructor: DataSheet,
 
     update: function () {
-
         this.xAxisFeature.update();
         this.yAxisFeature.update();
-        /*
-        for (i = 0; i < this.cars.length; i++) {
-            this.cars[i].setPosition(Math.random() * (width - 2 * 10) + 10, Math.random() * (height - 2 * 10) + 10);
-        }
-        */
+    },
+
+    setXAxis: function (feature) {
+        this.xAxisFeature.setFeature(feature);
+    },
+
+    setYAxis: function (feature) {
+        this.yAxisFeature.setFeature(feature);
     },
 
     hoverElements: function (x,y){
@@ -44,11 +46,20 @@ DataSheet.prototype = {
         }
     },
 
-    showInformationBox: function (x,y){
+    showInformationLabel: function (x,y){
         for (i = 0; i < this.cars.length; i++) {
             if ((Math.abs(this.cars[i].getX() - x) <= 10) && (Math.abs(this.cars[i].getY() - y) <= 10)) {
-                console.log("Show Information Box for");
+                console.log("Show Information Label for");
                 console.log(this.cars[i]);
+
+                infoDiv = document.getElementById("informationLabel");
+                console.log(infoDiv);
+                console.log(infoDiv.style.left)
+
+                infoDiv.style.visibility = "visible"; //hidden
+                infoDiv.style.left = ""+(this.cars[i].getX()+20)+"px";
+                infoDiv.style.top =  ""+(this.cars[i].getY()-10)+"px";
+
                 break;
             }
         }
