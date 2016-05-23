@@ -73,6 +73,8 @@ Range.prototype = {
             return "Car";
         }else if(this.valueName == "cylinders"){
             return "Cylinders";
+        }else if(this.valueName == "none"){
+            return "None";
         }else{
             return "";
         }

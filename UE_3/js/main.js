@@ -2,6 +2,7 @@ var svgElement;
 var width = 800;
 var height = 600;
 var dataSheet;
+var dataSizeSilderValue = 2.5;
 
 function main() {
 
@@ -47,9 +48,15 @@ function yAxisChanged(element) {
     dataSheet.update();
 }
 
-function colorChanged(color) {
-    console.log("colorChanged " + color);
-    dataSheet.setColor(color);
+function colorChanged(what, featureName) {
+    console.log("colorChanged " + what + " "+featureName);
+    dataSheet.setColor(what, featureName);
+    dataSheet.update();
+}
+
+function sizeChanged(featureName) {
+    console.log("sizeChanged "+ featureName);
+    dataSheet.setSize(featureName);
     dataSheet.update();
 }
 
@@ -76,6 +83,8 @@ var slider = new Slider("#ex1");
 slider.on("slide", function (slideEvt) {
     $("#ex6SliderVal").text(slideEvt.value);
     console.log("Slider Chaned to: "+slideEvt);
+    dataSizeSilderValue = slideEvt;
+    dataSheet.update();
 });
 
 main();

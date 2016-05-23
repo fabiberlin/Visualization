@@ -1,8 +1,9 @@
 function ColorFeature(carsArr) {
     this.cars = carsArr;
     this.enabled = false;
-    this.featureName = "";
-    this.range = null;
+    this.hueFeature = new HueFeature(carsArr);
+    this.saturationFeature = new SaturationFeature(carsArr);
+    this.brightnessFeature = new BrightnessFeature(carsArr);
 }
 
 ColorFeature.prototype = {
@@ -17,33 +18,27 @@ ColorFeature.prototype = {
         this.enabled = false;
     },
 
-    setFeature: function (featureName) {
-        this.featureName = featureName;
-        this.range = new Range(featureName, this.cars);
+    setFeature: function (what, featureName) {
+        this[what].setFeature(featureName);
+
     },
 
     update: function () {
         for (i = 0; i < this.cars.length; i++) {
-            hueValue = this.calcValue(cars[i][this.featureName]);
+
+            hueValue = this.hueFeature.getFeatureValue(this.cars[i]);
+            saturationValue = this.saturationFeature.getFeatureValue(this.cars[i]);
+            brightness = this.brightnessFeature.getFeatureValue(this.cars[i]);
+
             //console.log(hueValue);
-            rgb = hslToRgb(hueValue,0.5,0.5);
+            rgb = hslToRgb(hueValue,saturationValue,brightness);
             //console.log(rgb);
             asHex = rgbToHex(rgb[0],rgb[1],rgb[2]);
             //console.log(asHex);
             cars[i].setColor(asHex);
 
         }
-        this.drawAxis();
     },
-
-    calcValue: function (input) {
-        output = ((1-1/6)/(this.range.max-this.range.min))*(input-this.range.min)+(1/6);
-        return output;
-    },
-
-    drawAxis: function () {
-
-    }
 };
 
 

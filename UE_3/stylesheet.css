@@ -9,12 +9,14 @@
 
 #hoverLabel {
     position: absolute;
-    z-index: 4;
+    z-index: 5;
     top: 0;
     left: 0;
     display: inline-block;
     background: white;
+    border: solid;
     visibility: hidden;
+    padding: 2px;
 
 }
 
@@ -27,6 +29,7 @@
     background: white;
     border: solid;
     visibility: hidden;
+    padding: 2px;
 }
 
 #informationLabel p {
@@ -36,4 +39,8 @@
 
 #ex1Slider .slider-selection {
 	background: #BABABA;
+}
+
+.spanBold{
+    font-weight: bold;
 }

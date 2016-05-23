@@ -74,8 +74,11 @@ Car.prototype = {
     },
 
     scale: function (scale){
-        //console.log(this.svg[0][0].r.baseVal.value);
         this.svg[0][0].r.baseVal.value = scale;
+    },
+
+    getScale: function (){
+        return this.svg[0][0].r.baseVal.value;
     },
 
     getShortSting: function () {

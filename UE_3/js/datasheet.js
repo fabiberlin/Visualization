@@ -15,7 +15,11 @@ function DataSheet(carsArr) {
     this.yAxisFeature = new YAxisFeature(this.cars);
     this.yAxisFeature.setFeature("horsepower");
     this.colorFeature = new ColorFeature(this.cars);
-    this.colorFeature.setFeature("mpg");
+    this.colorFeature.setFeature("hueFeature","mpg");
+    this.colorFeature.setFeature("saturationFeature","mpg");
+    this.colorFeature.setFeature("brightnessFeature","mpg");
+    this.sizeFeature = new SizeFeature(this.cars);
+    this.sizeFeature.setFeature("mpg");
 }
 
 DataSheet.prototype = {
@@ -26,6 +30,7 @@ DataSheet.prototype = {
         this.xAxisFeature.update();
         this.yAxisFeature.update();
         this.colorFeature.update();
+        this.sizeFeature.update();
     },
 
     setXAxis: function (feature) {
@@ -36,18 +41,22 @@ DataSheet.prototype = {
         this.yAxisFeature.setFeature(feature);
     },
 
-    setColor: function (feature) {
-        this.colorFeature.setFeature(feature);
+    setColor: function (what, featureName) {
+        this.colorFeature.setFeature(what, featureName);
+    },
+
+    setSize: function (featureName) {
+        this.sizeFeature.setFeature(featureName);
     },
 
     hoverElements: function (x, y) {
         car = null;
         for (i = 0; i < this.cars.length; i++) {
-            if ((Math.abs(this.cars[i].getX() - x) <= 10) && (Math.abs(this.cars[i].getY() - y) <= 10)) {
-                this.cars[i].scale(7.5);
+            if ((Math.abs(this.cars[i].getX() - x) <= dataSizeSilderValue) && (Math.abs(this.cars[i].getY() - y) <= dataSizeSilderValue)) {
+                //this.cars[i].scale(dataSizeSilderValue*2);
                 car = this.cars[i];
             } else {
-                this.cars[i].scale(2.5);
+                //this.cars[i].scale(dataSizeSilderValue);
             }
         }
         if(car != null){
@@ -81,7 +90,7 @@ DataSheet.prototype = {
             }
             for (i = 0; i < allDataFields.length; i++) {
                 infospan = document.getElementById("info_"+allDataFields[i]);
-                infospan.textContent = roundValues(allDataFields[i], car[allDataFields[i]]);
+                infospan.textContent = roundValues(allDataFields[i], car[allDataFields[i]]) + " " + getMeasureUnit(allDataFields[i]);
             }
 
         } else {
@@ -95,7 +104,7 @@ DataSheet.prototype = {
 
     getCarAtMousePos: function (x, y) {
         for (i = 0; i < this.cars.length; i++) {
-            if ((Math.abs(this.cars[i].getX() - x) <= 10) && (Math.abs(this.cars[i].getY() - y) <= 10)) {
+            if ((Math.abs(this.cars[i].getX() - x) <= dataSizeSilderValue) && (Math.abs(this.cars[i].getY() - y) <= dataSizeSilderValue)) {
                 return this.cars[i];
             }
         }
