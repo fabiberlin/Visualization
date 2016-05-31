@@ -83,5 +83,9 @@ Car.prototype = {
 
     getShortSting: function () {
         return this.manufacturer + " " + this.car;
+    },
+
+    hide: function () {
+        console.log("hide");
     }
 };

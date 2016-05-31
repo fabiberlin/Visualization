@@ -52,7 +52,8 @@ DataSheet.prototype = {
     hoverElements: function (x, y) {
         car = null;
         for (i = 0; i < this.cars.length; i++) {
-            if ((Math.abs(this.cars[i].getX() - x) <= dataSizeSilderValue) && (Math.abs(this.cars[i].getY() - y) <= dataSizeSilderValue)) {
+            //console.log(this.cars[i].getScale());
+            if ((Math.abs(this.cars[i].getX() - x) <= this.cars[i].getScale()) && (Math.abs(this.cars[i].getY() - y) <= this.cars[i].getScale())) {
                 //this.cars[i].scale(dataSizeSilderValue*2);
                 car = this.cars[i];
             } else {
@@ -104,7 +105,7 @@ DataSheet.prototype = {
 
     getCarAtMousePos: function (x, y) {
         for (i = 0; i < this.cars.length; i++) {
-            if ((Math.abs(this.cars[i].getX() - x) <= dataSizeSilderValue) && (Math.abs(this.cars[i].getY() - y) <= dataSizeSilderValue)) {
+            if ((Math.abs(this.cars[i].getX() - x) <= this.cars[i].getScale()) && (Math.abs(this.cars[i].getY() - y) <= this.cars[i].getScale())) {
                 return this.cars[i];
             }
         }

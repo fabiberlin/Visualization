@@ -34,15 +34,17 @@ SizeFeature.prototype = {
                 size = this.calcValue(this.cars[i][this.featureName]);
                 this.cars[i].scale(size);
             }else{
-                this.cars[i].scale(dataSizeSilderValue)
+                value = Math.sqrt(dataSizeSilderValue/Math.PI);
+                this.cars[i].scale(value);
             }
         }
     },
 
     calcValue: function (input) {
         mindim = dataSizeSilderValue * 1 / 2;
-        maxdim = dataSizeSilderValue * 2;
+        maxdim = dataSizeSilderValue * 3;
         output = ((maxdim - mindim) / (this.range.max - this.range.min)) * (input - this.range.min) + (mindim);
+        output = Math.sqrt(output/Math.PI);
         return output;
     }
 , };

@@ -2,7 +2,7 @@ var svgElement;
 var width = 800;
 var height = 600;
 var dataSheet;
-var dataSizeSilderValue = 2.5;
+var dataSizeSilderValue = 30;
 
 function main() {
 

@@ -25,8 +25,12 @@ YAxisFeature.prototype = {
 
     update: function () {
         for (i = 0; i < this.cars.length; i++) {
-            yValue = this.calcValue(this.cars[i][this.featureName]);
-            this.cars[i].setY(yValue);
+            //if(this.cars[i][this.featureName] == null){
+            //    this.cars[i].hide();
+            //}else{
+                yValue = this.calcValue(this.cars[i][this.featureName]);
+                this.cars[i].setY(yValue);
+            //}
 
         }
         this.drawAxis();
