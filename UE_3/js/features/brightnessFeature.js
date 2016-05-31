@@ -37,7 +37,8 @@ BrightnessFeature.prototype = {
     },
 
     calcValue: function (input) {
-        output = ((5/6)/(this.range.max-this.range.min))*(input-this.range.min)+(0);
+        output = (((1/6)-(5/6))/(this.range.max-this.range.min))*(input-this.range.min)+(5/6);
+        //output = ((5/6)/(this.range.max-this.range.min))*(input-this.range.min)+(0);
         return output;
     },
 

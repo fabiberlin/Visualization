@@ -15,11 +15,11 @@ function DataSheet(carsArr) {
     this.yAxisFeature = new YAxisFeature(this.cars);
     this.yAxisFeature.setFeature("horsepower");
     this.colorFeature = new ColorFeature(this.cars);
-    this.colorFeature.setFeature("hueFeature","mpg");
-    this.colorFeature.setFeature("saturationFeature","mpg");
-    this.colorFeature.setFeature("brightnessFeature","mpg");
+    this.colorFeature.setFeature("hueFeature","none");
+    this.colorFeature.setFeature("saturationFeature","none");
+    this.colorFeature.setFeature("brightnessFeature","none");
     this.sizeFeature = new SizeFeature(this.cars);
-    this.sizeFeature.setFeature("mpg");
+    this.sizeFeature.setFeature("none");
 }
 
 DataSheet.prototype = {

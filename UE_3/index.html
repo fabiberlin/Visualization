@@ -11,9 +11,13 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.2/css/bootstrap-slider.css">
 
+    <link rel="stylesheet" href="lib/css/bootstrap3/bootstrap-switch.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.2/bootstrap-slider.js"></script>
+
+    <script src="lib/js/bootstrap-switch.js"></script>
 
     <link href="stylesheet.css" type="text/css" rel="stylesheet">
 
@@ -162,6 +166,7 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
+                            <li><a href="#" onclick="sizeChanged('none')">None</a></li>
                             <li><a href="#" onclick="sizeChanged('mpg')">Consumption</a></li>
                             <li><a href="#" onclick="sizeChanged('cylinders')">Cylinders</a></li>
                             <li><a href="#" onclick="sizeChanged('displacement')">Displacement</a></li>
