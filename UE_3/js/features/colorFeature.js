@@ -35,7 +35,7 @@ ColorFeature.prototype = {
             //console.log(rgb);
             asHex = rgbToHex(rgb[0],rgb[1],rgb[2]);
             //console.log(asHex);
-            cars[i].setColor(asHex);
+            this.cars[i].setColor(asHex);
 
         }
     },

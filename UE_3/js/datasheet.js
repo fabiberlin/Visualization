@@ -20,6 +20,13 @@ function DataSheet(carsArr) {
     this.colorFeature.setFeature("brightnessFeature","none");
     this.sizeFeature = new SizeFeature(this.cars);
     this.sizeFeature.setFeature("none");
+
+    d3.select("#xAxisLabelName").remove();
+    d3.select("#xAxisLabelUnit").remove();
+    d3.select("#xAxis").remove();
+    d3.select("#yAxisLabel").remove();
+    d3.select("#yAxisLabelUnit").remove();
+    d3.select("#yAxis").remove();
 }
 
 DataSheet.prototype = {
@@ -52,12 +59,8 @@ DataSheet.prototype = {
     hoverElements: function (x, y) {
         car = null;
         for (i = 0; i < this.cars.length; i++) {
-            //console.log(this.cars[i].getScale());
             if ((Math.abs(this.cars[i].getX() - x) <= this.cars[i].getScale()) && (Math.abs(this.cars[i].getY() - y) <= this.cars[i].getScale())) {
-                //this.cars[i].scale(dataSizeSilderValue*2);
                 car = this.cars[i];
-            } else {
-                //this.cars[i].scale(dataSizeSilderValue);
             }
         }
         if(car != null){

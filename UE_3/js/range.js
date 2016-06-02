@@ -3,7 +3,7 @@ function Range(valueName, carsArr) {
     this.max = 1;
     this.mean = 0.5;
     this.median = 0.5; //TODO
-    this.valueName = "";
+    this.valueName = valueName;
     this.setRanges(valueName, carsArr);
 }
 
@@ -13,8 +13,8 @@ Range.prototype = {
 
     setRanges: function (valueName, carsArr) {
         this.valueName = valueName;
-        currentmin = 1000;
-        currentmax = 0;
+        currentmin = Number.MAX_VALUE;
+        currentmax = Number.MIN_VALUE;
         sum = 0;
         num = 0;
 
@@ -34,6 +34,12 @@ Range.prototype = {
         this.min = currentmin;
         this.max = currentmax;
         this.mean = sum/num;
+    },
+
+    flip: function(){
+        min = this.min;
+        this.min=this.max;
+        this.max = min;
     },
 
     getMeasureUnit: function () {

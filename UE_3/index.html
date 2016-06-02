@@ -29,6 +29,7 @@
     <script src="js/datasheet.js"></script>
     <script src="js/const.js"></script>
     <script src="js/helper.js"></script>
+    <script src="js/cluster.js"></script>
     <script src="js/features/xAxisFeature.js"></script>
     <script src="js/features/yAxisFeature.js"></script>
     <script src="js/features/colorFeature.js"></script>
@@ -36,6 +37,7 @@
     <script src="js/features/saturationFeature.js"></script>
     <script src="js/features/brightnessFeature.js"></script>
     <script src="js/features/sizeFeature.js"></script>
+
 
 </head>
 
@@ -51,7 +53,7 @@
                 <div class="panel-heading">General Data Size</div>
                 <div class="panel-body" style="padding:0">
 
-                    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="100" data-slider-step="1" data-slider-value="50" />
+                    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="400" data-slider-step="1" data-slider-value="50" />
 
                 </div>
             </div>
@@ -174,6 +176,23 @@
                             <li><a href="#" onclick="sizeChanged('weight')">Weight</a></li>
                             <li><a href="#" onclick="sizeChanged('acceleration')">Acceleration</a></li>
                             <li><a href="#" onclick="sizeChanged('modelYear')">Model Year</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><span class="spanBold">Cluster by</span></div>
+                <div class="panel-body" style="padding:0">
+                    <div id="clusterSelector" class="dropup">
+                        <p id="chosen_size" style="display: inline-block; padding:10px">Chosen Feature</p>
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onclick="clusterChanged('none')">None</a></li>
+                            <li><a href="#" onclick="clusterChanged('Manufacturer')">Manufacturer</a></li>
+                            <li><a href="#" onclick="clusterChanged('Origin')">Origin</a></li>
                         </ul>
                     </div>
 

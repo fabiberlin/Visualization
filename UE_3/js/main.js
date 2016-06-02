@@ -9,14 +9,18 @@ function main() {
     width = window.innerWidth - 0;
     height = window.innerHeight - 4;
 
-    clear();
+
 
     document.getElementById("overlay").addEventListener("mousemove", handleMouseMove);
     document.getElementById("overlay").addEventListener("mousedown", handleMouseDown);
 
     document.getElementById("SelectionBar").style.transform = "translate(" + (width - rightMargin + 50) + "px," + upperMargin + "px)";
-    cars = [];
+    initialsetup();
+}
 
+function initialsetup() {
+    clear();
+    cars = [];
     for (i = 0; i < data.length; i++) {
         aCar = new Car();
         aCar.setPropsFromJson(data[i]);
@@ -49,16 +53,69 @@ function yAxisChanged(element) {
 }
 
 function colorChanged(what, featureName) {
-    console.log("colorChanged " + what + " "+featureName);
+    console.log("colorChanged " + what + " " + featureName);
     dataSheet.setColor(what, featureName);
     dataSheet.update();
 }
 
 function sizeChanged(featureName) {
-    console.log("sizeChanged "+ featureName);
+    console.log("sizeChanged " + featureName);
     dataSheet.setSize(featureName);
     dataSheet.update();
 }
+
+function clusterChanged(featureName) {
+    console.log("clusterChanged " + featureName);
+    clear();
+    cars = clusterCars(featureName);
+}
+
+function clusterCars(featureName) {
+
+    if(featureName == "none"){
+        initialsetup()
+        return;
+    }
+
+    clusters = [];
+    for (i = 0; i < data.length; i++) {
+        value = data[i][featureName];
+        cluster = isInClusters(clusters, value)
+        if (cluster != null) {
+            cluster.addCar(data[i]);
+        } else {
+            cluster = new Cluster(featureName, value);
+            cluster.addCar(data[i]);
+            clusters.push(cluster);
+        }
+    }
+    console.log(clusters);
+
+    meanCars = [];
+    console.log(meanCars);
+    for (k = 0; k < clusters.length; k++) {
+        console.log(meanCars);
+        theMeancar = clusters[k].getMeanCar();
+        theMeancar.svg = this.drawCircle(new Glyph("black", 5));
+        meanCars.push(theMeancar);
+        console.log(meanCars);
+    }
+    console.log(meanCars);
+
+    dataSheet = new DataSheet(meanCars, svgElement);
+    dataSheet.update();
+}
+
+function isInClusters(clusters, value) {
+    for (j = 0; j < clusters.length; j++) {
+        if (clusters[j].nameOfCluster == value) {
+            return clusters[j];
+        }
+    }
+    return null;
+}
+
+
 
 
 function drawCircle(circle) {
@@ -82,7 +139,7 @@ function clear() {
 var slider = new Slider("#ex1");
 slider.on("slide", function (slideEvt) {
     $("#ex6SliderVal").text(slideEvt.value);
-    console.log("Slider Chaned to: "+slideEvt);
+    console.log("Slider Chaned to: " + slideEvt);
     dataSizeSilderValue = slideEvt;
     dataSheet.update();
 });

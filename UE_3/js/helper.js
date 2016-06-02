@@ -1,5 +1,5 @@
 function roundValues(featureName, value) {
-    if (featureName == "mpg" || featureName == "displacement" || featureName == "weight" || featureName == "acceleration") {
+    if (featureName == "mpg" || featureName == "displacement" || featureName == "weight" || featureName == "acceleration" || featureName == "cylinders" || featureName == "modelYear" || featureName == "horsepower") {
         return Math.round(value * 10) / 10;
     } else {
         return value;
