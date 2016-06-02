@@ -24,7 +24,8 @@ function initialsetup() {
     for (i = 0; i < data.length; i++) {
         aCar = new Car();
         aCar.setPropsFromJson(data[i]);
-        aCar.svg = this.drawCircle(new Glyph("black", 5));
+        aCar.carId = i;
+        aCar.svg = this.drawCircle(new Glyph("black", 5), i);
         cars.push(aCar);
     }
     dataSheet = new DataSheet(cars, svgElement);
@@ -96,7 +97,8 @@ function clusterCars(featureName) {
     for (k = 0; k < clusters.length; k++) {
         console.log(meanCars);
         theMeancar = clusters[k].getMeanCar();
-        theMeancar.svg = this.drawCircle(new Glyph("black", 5));
+        theMeancar.svg = this.drawCircle(new Glyph("black", 5), k);
+        theMeancar.carId = k;
         meanCars.push(theMeancar);
         console.log(meanCars);
     }
@@ -115,15 +117,13 @@ function isInClusters(clusters, value) {
     return null;
 }
 
-
-
-
-function drawCircle(circle) {
+function drawCircle(circle, id) {
     circle = svgElement
         .append('circle')
         .attr("cy", circle.y)
         .attr("cx", circle.x)
         .attr("r", circle.dim / 2)
+        .attr("id", "carId_"+id)
         .attr('fill', circle.color);
     return circle;
 }

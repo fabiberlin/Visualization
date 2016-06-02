@@ -38,6 +38,10 @@ DataSheet.prototype = {
         this.yAxisFeature.update();
         this.colorFeature.update();
         this.sizeFeature.update();
+
+        for (i = 0; i < this.cars.length; i++) {
+            this.cars[i].update();
+        }
     },
 
     setXAxis: function (feature) {

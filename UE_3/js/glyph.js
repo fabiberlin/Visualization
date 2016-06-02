@@ -1,10 +1,10 @@
 class Glyph {
     constructor(color, dim) {
-        this.x = 0;
-        this.y = 0;
+        this.y = (height-lowerMargin-upperMargin)/2 + upperMargin;
+        this.x = (width - leftMargin - rightMargin)/2 + leftMargin;
         this.dim = dim;
         this.color = color;
-        this.randomizePosition();
+        //this.randomizePosition();
     }
 
     hidesOtherGlyphs(glyphs) {

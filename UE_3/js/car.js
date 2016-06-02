@@ -10,6 +10,11 @@ function Car() {
     this.modelYear = null;
     this.origin = null;
     this.svg = null;
+    this.carId = null;
+
+    this.x = null;
+    this.y = null;
+    this.color = null;
 }
 
 Car.prototype = {
@@ -27,7 +32,6 @@ Car.prototype = {
         this.acceleration = aCarJson["Acceleration"];
         this.modelYear = aCarJson["Model Year"];
         this.origin = aCarJson["Origin"];
-
         this.convertToMetricSystem();
     },
 
@@ -48,17 +52,21 @@ Car.prototype = {
         this.svg = element;
     },
 
-    setPosition: function (x, y) {
-        this.svg[0][0].cx.baseVal.value = x;
-        this.svg[0][0].cy.baseVal.value = y;
+    update: function (){
+        d3.select("#carId_"+this.carId)
+            .transition()
+            .duration(animationDuration)
+            .attr( 'cx', this.x )
+            .attr( 'cy', this.y )
+            .style("fill", this.color);
     },
 
     setX: function (x) {
-        this.svg[0][0].cx.baseVal.value = x;
+        this.x = x;
     },
 
     setY: function (y) {
-        this.svg[0][0].cy.baseVal.value = y;
+        this.y = y;
     },
 
     getX: function () {
@@ -70,7 +78,8 @@ Car.prototype = {
     },
 
     setColor:function (hex) {
-        this.svg.attr('style', "fill:"+hex);
+        this.color = hex;
+        //this.svg.attr('style', "fill:"+hex);
     },
 
     scale: function (scale){

@@ -6,3 +6,5 @@ var leftMargin = 160;
 var rightMargin = 400;
 var upperMargin = 50;
 var lowerMargin = 150;
+
+var animationDuration = 1000;
