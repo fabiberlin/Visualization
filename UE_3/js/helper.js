@@ -43,7 +43,11 @@ function getFriendlyFeatureName(feature){
             return "Car";
         }else if(feature == "cylinders"){
             return "Cylinders";
-        }else if(feature == "none"){
+        }else if(feature == "Manufacturer"){
+            return "Manufacturer";
+        }else if(feature == "Origin"){
+            return "Origin";
+        }else if(feature == "none" || feature == "None"){
             return "None";
         }else{
             return "";

@@ -73,7 +73,9 @@ function clusterChanged(featureName) {
 
 function clusterCars(featureName) {
 
-    if(featureName == "none"){
+    document.getElementById("chosen_cluster").textContent = getFriendlyFeatureName(featureName)
+
+    if (featureName == "none") {
         initialsetup()
         return;
     }
@@ -90,19 +92,19 @@ function clusterCars(featureName) {
             clusters.push(cluster);
         }
     }
-    console.log(clusters);
+    //console.log(clusters);
 
     meanCars = [];
-    console.log(meanCars);
+    //console.log(meanCars);
     for (k = 0; k < clusters.length; k++) {
-        console.log(meanCars);
+        //console.log(meanCars);
         theMeancar = clusters[k].getMeanCar();
         theMeancar.svg = this.drawCircle(new Glyph("black", 5), k);
         theMeancar.carId = k;
         meanCars.push(theMeancar);
-        console.log(meanCars);
+        //console.log(meanCars);
     }
-    console.log(meanCars);
+    //console.log(meanCars);
 
     dataSheet = new DataSheet(meanCars, svgElement);
     dataSheet.update();
@@ -123,7 +125,7 @@ function drawCircle(circle, id) {
         .attr("cy", circle.y)
         .attr("cx", circle.x)
         .attr("r", circle.dim / 2)
-        .attr("id", "carId_"+id)
+        .attr("id", "carId_" + id)
         .attr('fill', circle.color);
     return circle;
 }
@@ -142,6 +144,16 @@ slider.on("slide", function (slideEvt) {
     console.log("Slider Chaned to: " + slideEvt);
     dataSizeSilderValue = slideEvt;
     dataSheet.update();
+});
+
+$("#search_input").on("input", function (e) {
+    if ($(this).data("lastval") != $(this).val()) {
+        $(this).data("lastval", $(this).val());
+        //change action
+        value = $(this).val();
+        console.log("search input changed to: " + value);
+
+    };
 });
 
 main();

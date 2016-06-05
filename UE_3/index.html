@@ -47,11 +47,20 @@
             <div class="panel panel-default">
                 <div class="panel-heading">General Data Size</div>
                 <div class="panel-body" style="padding:0">
-
                     <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="400" data-slider-step="1" data-slider-value="50" />
-
                 </div>
             </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Filter</div>
+                <div class="panel-body" style="padding:0">
+                    <input type="text" class="form-control" placeholder="Search" name="srch-term" id="search_input">
+                </div>
+            </div>
+
+
+
 
             <div class="panel panel-default">
                 <div class="panel-heading"><span class="spanBold">X Axis</span></div>
@@ -181,7 +190,7 @@
                 <div class="panel-heading"><span class="spanBold">Cluster by</span></div>
                 <div class="panel-body" style="padding:0">
                     <div id="clusterSelector" class="dropup">
-                        <p id="chosen_size" style="display: inline-block; padding:10px">Chosen Feature</p>
+                        <p id="chosen_cluster" style="display: inline-block; padding:10px">None</p>
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">

@@ -52,12 +52,12 @@ Car.prototype = {
         this.svg = element;
     },
 
-    update: function (){
-        d3.select("#carId_"+this.carId)
+    update: function () {
+        d3.select("#carId_" + this.carId)
             .transition()
             .duration(animationDuration)
-            .attr( 'cx', this.x )
-            .attr( 'cy', this.y )
+            .attr('cx', this.x)
+            .attr('cy', this.y)
             .style("fill", this.color);
     },
 
@@ -77,16 +77,16 @@ Car.prototype = {
         return this.svg[0][0].cy.baseVal.value;
     },
 
-    setColor:function (hex) {
+    setColor: function (hex) {
         this.color = hex;
         //this.svg.attr('style', "fill:"+hex);
     },
 
-    scale: function (scale){
+    scale: function (scale) {
         this.svg[0][0].r.baseVal.value = scale;
     },
 
-    getScale: function (){
+    getScale: function () {
         return this.svg[0][0].r.baseVal.value;
     },
 
@@ -96,5 +96,17 @@ Car.prototype = {
 
     hide: function () {
         console.log("hide");
+        d3.select("#carId_" + this.carId)
+            .transition()
+            .duration(300)
+            .style("opacity", 0);
+    },
+
+    show: function () {
+        console.log("show");
+        d3.select("#carId_" + this.carId)
+            .transition()
+            .duration(300)
+            .style("opacity", 1);
     }
 };
