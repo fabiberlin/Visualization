@@ -9,12 +9,12 @@ function main() {
     width = window.innerWidth - 0;
     height = window.innerHeight - 4;
 
-
-
     document.getElementById("overlay").addEventListener("mousemove", handleMouseMove);
     document.getElementById("overlay").addEventListener("mousedown", handleMouseDown);
 
     document.getElementById("SelectionBar").style.transform = "translate(" + (width - rightMargin + 50) + "px," + upperMargin + "px)";
+    document.getElementById("SelectionBarLeft").style.transform = "translate(" + 0 + "px," + upperMargin + "px)";
+
     initialsetup();
 }
 
@@ -37,36 +37,36 @@ function handleMouseMove(event) {
 }
 
 function handleMouseDown(event) {
-    console.log("Mouse Down   " + event.clientX + "   " + event.clientY);
+    //console.log("Mouse Down   " + event.clientX + "   " + event.clientY);
     dataSheet.showInformationLabel(event.clientX, event.clientY);
 }
 
 function xAxisChanged(element) {
-    console.log("xAxisChanged " + element);
+    //console.log("xAxisChanged " + element);
     dataSheet.setXAxis(element);
     dataSheet.update();
 }
 
 function yAxisChanged(element) {
-    console.log("yAxisChanged " + element);
+    //console.log("yAxisChanged " + element);
     dataSheet.setYAxis(element);
     dataSheet.update();
 }
 
 function colorChanged(what, featureName) {
-    console.log("colorChanged " + what + " " + featureName);
+    //console.log("colorChanged " + what + " " + featureName);
     dataSheet.setColor(what, featureName);
     dataSheet.update();
 }
 
 function sizeChanged(featureName) {
-    console.log("sizeChanged " + featureName);
+    //console.log("sizeChanged " + featureName);
     dataSheet.setSize(featureName);
     dataSheet.update();
 }
 
 function clusterChanged(featureName) {
-    console.log("clusterChanged " + featureName);
+    //console.log("clusterChanged " + featureName);
     clear();
     cars = clusterCars(featureName);
 }
@@ -141,7 +141,7 @@ function clear() {
 var slider = new Slider("#ex1");
 slider.on("slide", function (slideEvt) {
     $("#ex6SliderVal").text(slideEvt.value);
-    console.log("Slider Chaned to: " + slideEvt);
+    //console.log("Slider Chaned to: " + slideEvt);
     dataSizeSilderValue = slideEvt;
     dataSheet.update();
 });
@@ -151,9 +151,8 @@ $("#search_input").on("input", function (e) {
         $(this).data("lastval", $(this).val());
         //change action
         value = $(this).val();
-        console.log("search input changed to: " + value);
+        //console.log("search input changed to: " + value);
+        dataSheet.filter(value);
 
     };
 });
-
-main();

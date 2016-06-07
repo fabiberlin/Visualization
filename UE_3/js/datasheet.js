@@ -9,15 +9,15 @@ function DataSheet(carsArr) {
     this.ranges.push(new Range("acceleration", this.cars));
     this.ranges.push(new Range("modelYear", this.cars));
 
-    console.log(this.ranges);
+    //console.log(this.ranges);
     this.xAxisFeature = new XAxisFeature(this.cars);
     this.xAxisFeature.setFeature("weight");
     this.yAxisFeature = new YAxisFeature(this.cars);
     this.yAxisFeature.setFeature("horsepower");
     this.colorFeature = new ColorFeature(this.cars);
-    this.colorFeature.setFeature("hueFeature","none");
-    this.colorFeature.setFeature("saturationFeature","none");
-    this.colorFeature.setFeature("brightnessFeature","none");
+    this.colorFeature.setFeature("hueFeature", "none");
+    this.colorFeature.setFeature("saturationFeature", "none");
+    this.colorFeature.setFeature("brightnessFeature", "none");
     this.sizeFeature = new SizeFeature(this.cars);
     this.sizeFeature.setFeature("none");
 
@@ -67,13 +67,13 @@ DataSheet.prototype = {
                 car = this.cars[i];
             }
         }
-        if(car != null){
+        if (car != null) {
             hoverDiv = document.getElementById("hoverLabel");
             hoverDiv.style.visibility = "visible"; //hidden
             hoverDiv.style.left = "" + (car.getX() + 10) + "px";
             hoverDiv.style.top = "" + (car.getY() - 20) + "px";
             document.getElementById("hover_car").textContent = car.getShortSting();
-        }else{
+        } else {
             //hide
             hoverDiv = document.getElementById("hoverLabel");
             hoverDiv.style.left = "0px";
@@ -86,18 +86,18 @@ DataSheet.prototype = {
         car = this.getCarAtMousePos(x, y);
         if (car != null) {
             //show
-            console.log("Show Information Label for");
-            console.log(car);
+            //console.log("Show Information Label for");
+            //console.log(car);
 
             infoDiv = document.getElementById("informationLabel");
             infoDiv.style.visibility = "visible"; //hidden
             infoDiv.style.left = "" + (car.getX() + 0) + "px";
             infoDiv.style.top = "" + (car.getY() - 0) + "px";
-            if(y>height/2){
+            if (y > height / 2) {
                 infoDiv.style.top = "" + (car.getY() - 205) + "px";
             }
             for (i = 0; i < allDataFields.length; i++) {
-                infospan = document.getElementById("info_"+allDataFields[i]);
+                infospan = document.getElementById("info_" + allDataFields[i]);
                 infospan.textContent = roundValues(allDataFields[i], car[allDataFields[i]]) + " " + getMeasureUnit(allDataFields[i]);
             }
 
@@ -117,5 +117,21 @@ DataSheet.prototype = {
             }
         }
         return null;
+    },
+
+    filter: function (value) {
+        if (value == "") {
+            for (i = 0; i < this.cars.length; i++) {
+                this.cars[i].show();
+            }
+        } else {
+            for (i = 0; i < this.cars.length; i++) {
+                if (this.cars[i].hasFilterValue(value.toLowerCase())) {
+                    this.cars[i].show();
+                } else {
+                    this.cars[i].hide();
+                }
+            }
+        }
     }
 };

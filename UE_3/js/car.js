@@ -31,7 +31,7 @@ Car.prototype = {
         this.weight = aCarJson["Weight"];
         this.acceleration = aCarJson["Acceleration"];
         this.modelYear = aCarJson["Model Year"];
-        this.origin = aCarJson["Origin"];
+        this.origin = aCarJson["Origin"].toLowerCase();
         this.convertToMetricSystem();
     },
 
@@ -95,18 +95,26 @@ Car.prototype = {
     },
 
     hide: function () {
-        console.log("hide");
+        //console.log("hide");
         d3.select("#carId_" + this.carId)
             .transition()
             .duration(300)
-            .style("opacity", 0);
+            .style("opacity", 0.1);
     },
 
     show: function () {
-        console.log("show");
+        //console.log("show");
         d3.select("#carId_" + this.carId)
             .transition()
             .duration(300)
             .style("opacity", 1);
+    },
+
+    hasFilterValue: function (value) {
+        if (this.car.indexOf(value) > -1 || this.manufacturer.indexOf(value) > -1 || this.origin.indexOf(value) > -1 || this.modelYear.toString().indexOf(value) > -1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 };

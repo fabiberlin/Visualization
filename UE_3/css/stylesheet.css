@@ -17,7 +17,6 @@
     border: solid;
     visibility: hidden;
     padding: 2px;
-
 }
 
 #informationLabel {
@@ -38,9 +37,30 @@
 }
 
 #ex1Slider .slider-selection {
-	background: #BABABA;
+    background: #BABABA;
 }
 
-.spanBold{
+.spanBold {
     font-weight: bold;
+}
+
+p {
+    margin: 2px;
+    padding: 2px;
+}
+
+div .panel-heading {
+    margin: 0px;
+    padding: 3px;
+    padding-left: 20px;
+}
+
+div .panel-body {
+    margin: 2px;
+    padding: 2px;
+}
+
+.btn {
+    margin: 2px;
+    padding: 2px;
 }
