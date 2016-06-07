@@ -28,8 +28,8 @@ YAxisFeature.prototype = {
             //if(this.cars[i][this.featureName] == null){
             //    this.cars[i].hide();
             //}else{
-                yValue = this.calcValue(this.cars[i][this.featureName]);
-                this.cars[i].setY(yValue);
+            yValue = this.calcValue(this.cars[i][this.featureName]);
+            this.cars[i].setY(yValue);
             //}
 
         }
@@ -63,15 +63,15 @@ YAxisFeature.prototype = {
             .call(yAxis);
 
         var yAxisLabel = svgElement.append("text") // text label for the x axis
-            .attr("x", leftMargin - 100)
-            .attr("y", (height - upperMargin) / 2)
+            .attr("x", leftMargin + 60)
+            .attr("y", (upperMargin))
             .attr("id", "yAxisLabel")
             .style("text-anchor", "middle")
             .text(this.range.getFriendlyName());
 
         var yAxisLabelUnit = svgElement.append("text") // text label for the x axis
-            .attr("x", leftMargin - 100)
-            .attr("y", ((height - upperMargin) / 2) + 20)
+            .attr("x", leftMargin + 60)
+            .attr("y", (upperMargin + 20))
             .attr("id", "yAxisLabelUnit")
             .style("text-anchor", "middle")
             .text("in [" + this.range.getMeasureUnit() + "]");

@@ -6,14 +6,14 @@ var dataSizeSilderValue = 30;
 
 function main() {
 
-    width = window.innerWidth - 0;
-    height = window.innerHeight - 4;
+    width = window.innerWidth - 5;
+    height = window.innerHeight - 5;
 
     document.getElementById("vis").addEventListener("mousemove", handleMouseMove);
     document.getElementById("vis").addEventListener("mousedown", handleMouseDown);
 
     document.getElementById("SelectionBar").style.transform = "translate(" + (width - rightMargin + 50) + "px," + upperMargin + "px)";
-    document.getElementById("SelectionBarLeft").style.transform = "translate(" + 10 + "px," + 10 + "px)";
+    document.getElementById("SelectionBarLeft").style.transform = "translate(" + 10 + "px," + upperMargin + "px)";
 
     initialsetup();
 }

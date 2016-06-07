@@ -43,30 +43,30 @@ XAxisFeature.prototype = {
         d3.select("#xAxis").remove();
 
         var axisScale = d3.scale.linear()
-        .domain([this.range.min, this.range.max])
-        .range([leftMargin, width-rightMargin]);
+            .domain([this.range.min, this.range.max])
+            .range([leftMargin, width - rightMargin]);
 
         var xAxis = d3.svg.axis()
-        .orient("bottom")
-        .scale(axisScale);
+            .orient("bottom")
+            .scale(axisScale);
 
         var xAxisGroup = svgElement.append("g")
-        .attr("transform", "translate(0," + (height - lowerMargin + 10) + ")")
-        .attr("id","xAxis")
-        .call(xAxis);
+            .attr("transform", "translate(0," + (height - lowerMargin + 10) + ")")
+            .attr("id", "xAxis")
+            .call(xAxis);
 
-        var xAxisLabel = svgElement.append("text")      // text label for the x axis
-        .attr("x", (width-leftMargin)/2 )
-        .attr("id","xAxisLabelName")
-        .attr("y",  (height - lowerMargin + 50) )
-        .style("text-anchor", "middle")
-        .text(this.range.getFriendlyName());
+        var xAxisLabel = svgElement.append("text") // text label for the x axis
+            .attr("x", (width - leftMargin - 100))
+            .attr("id", "xAxisLabelName")
+            .attr("y", (height - lowerMargin - 20))
+            .style("text-anchor", "middle")
+            .text(this.range.getFriendlyName());
 
-        var xAxisLabelUnit = svgElement.append("text")      // text label for the x axis
-        .attr("x", (width-leftMargin)/2 )
-        .attr("id","xAxisLabelUnit")
-        .attr("y",  (height - lowerMargin + 70) )
-        .style("text-anchor", "middle")
-        .text("in ["+this.range.getMeasureUnit()+"]");
+        var xAxisLabelUnit = svgElement.append("text") // text label for the x axis
+            .attr("x", (width - leftMargin - 100))
+            .attr("id", "xAxisLabelUnit")
+            .attr("y", (height - lowerMargin))
+            .style("text-anchor", "middle")
+            .text("in [" + this.range.getMeasureUnit() + "]");
     }
 };
