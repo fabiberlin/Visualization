@@ -33,12 +33,12 @@ function initialsetup() {
 }
 
 function handleMouseMove(event) {
-    console.log("Mouse Move   " + event.clientX + "   " + event.clientY);
-    dataSheet.hoverElements(event.clientX, event.clientY);
+    //console.log("Mouse Move   " + event.clientX + "   " + event.clientY);
+    //dataSheet.hoverElements(event.clientX, event.clientY);
 }
 
 function handleMouseDown(event) {
-    console.log("Mouse Down   " + event.clientX + "   " + event.clientY);
+    //console.log("Mouse Down   " + event.clientX + "   " + event.clientY);
     dataSheet.showInformationLabel(event.clientX, event.clientY);
 }
 
@@ -145,6 +145,14 @@ slider.on("slide", function (slideEvt) {
     //console.log("Slider Chaned to: " + slideEvt);
     dataSizeSilderValue = slideEvt;
     dataSheet.update();
+});
+
+var slider2 = new Slider("#ex2");
+slider2.on("slide", function (slideEvt) {
+    $("#ex6SliderVal").text(slideEvt.value);
+    //console.log("Slider Chaned to: " + slideEvt);
+    value = rgbToHex(slideEvt, slideEvt, slideEvt);
+    document.body.style.backgroundColor = value;
 });
 
 $("#search_input").on("input", function (e) {
