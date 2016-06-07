@@ -45,14 +45,14 @@
 }
 
 p {
-    margin: 2px;
-    padding: 2px;
+    margin: 0px;
+    padding: 0px;
 }
 
 div .panel-heading {
-    margin: 0px;
-    padding: 3px;
-    padding-left: 20px;
+    margin: 2px;
+    padding: 0px;
+    padding-left: 10px;
 }
 
 div .panel-body {

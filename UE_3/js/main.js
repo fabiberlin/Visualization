@@ -156,3 +156,4 @@ $("#search_input").on("input", function (e) {
 
     };
 });
+main();
