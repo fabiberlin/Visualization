@@ -9,11 +9,11 @@ function main() {
     width = window.innerWidth - 0;
     height = window.innerHeight - 4;
 
-    document.getElementById("overlay").addEventListener("mousemove", handleMouseMove);
-    document.getElementById("overlay").addEventListener("mousedown", handleMouseDown);
+    document.getElementById("vis").addEventListener("mousemove", handleMouseMove);
+    document.getElementById("vis").addEventListener("mousedown", handleMouseDown);
 
     document.getElementById("SelectionBar").style.transform = "translate(" + (width - rightMargin + 50) + "px," + upperMargin + "px)";
-    document.getElementById("SelectionBarLeft").style.transform = "translate(" + 0 + "px," + upperMargin + "px)";
+    document.getElementById("SelectionBarLeft").style.transform = "translate(" + 10 + "px," + 10 + "px)";
 
     initialsetup();
 }
@@ -33,11 +33,12 @@ function initialsetup() {
 }
 
 function handleMouseMove(event) {
+    console.log("Mouse Move   " + event.clientX + "   " + event.clientY);
     dataSheet.hoverElements(event.clientX, event.clientY);
 }
 
 function handleMouseDown(event) {
-    //console.log("Mouse Down   " + event.clientX + "   " + event.clientY);
+    console.log("Mouse Down   " + event.clientX + "   " + event.clientY);
     dataSheet.showInformationLabel(event.clientX, event.clientY);
 }
 
