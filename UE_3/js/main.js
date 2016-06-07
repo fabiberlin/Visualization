@@ -34,7 +34,7 @@ function initialsetup() {
 
 function handleMouseMove(event) {
     //console.log("Mouse Move   " + event.clientX + "   " + event.clientY);
-    //dataSheet.hoverElements(event.clientX, event.clientY);
+    dataSheet.hoverElements(event.clientX, event.clientY);
 }
 
 function handleMouseDown(event) {
