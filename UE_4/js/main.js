@@ -1,6 +1,7 @@
 var svg;
 var width;
 var height;
+var fill = d3.scale.category20();
 
 function main() {
 
@@ -11,16 +12,6 @@ function main() {
 
 function initialsetup() {
     console.log("initial setup");
-
-    var force = d3.layout.force()
-        .charge(-120)
-        .linkDistance(30)
-        .size([width, height]);
-
-    svg = d3.select("#vis").append("svg")
-        .attr("width", width)
-        .attr("height", height);
-
 
     d3.xml("js/Old_New_Testament_Social_Network.xml", function(error, data) {
         if (error) throw error;
@@ -56,14 +47,40 @@ function initialsetup() {
         console.log(edges);
 
 
+        // init svg
+        var outer = d3.select("#vis")
+            .append("svg:svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("pointer-events", "all");
+
+        var vis = outer
+            .append('svg:g')
+            .call(d3.behavior.zoom().on("zoom", rescale))
+            .on("dblclick.zoom", null)
+            .append('svg:g')
+            .on("mousemove", mousemove)
+            .on("mousedown", mousedown)
+            .on("mouseup", mouseup);
+
+        vis.append('svg:rect')
+            .attr('width', width)
+            .attr('height', height)
+            .attr('fill', 'white');
+
+         var force = d3.layout.force()
+             .charge(-120)
+             .linkDistance(30)
+             .size([width, height]);
+
         force
-            .nodes(nodes)
             .links(edges)
+            .nodes(nodes)
             .start();
 
         console.log("Forces started");
 
-        var edge = svg.selectAll(".link")
+        var edge = vis.selectAll(".link")
             .data(edges)
             .enter().append("line")
             .attr("class", "link")
@@ -72,16 +89,24 @@ function initialsetup() {
                 return d.weight;
             });
 
-
-        var node = svg.selectAll(".node")
+        var node = vis.selectAll(".node")
             .data(nodes)
-            .enter().append("circle")
+            .enter().append("g")
+            .attr("class", "node")
+            .call(force.drag);
+
+        node.append("circle")
             .attr("class", "node")
             .attr("r", function (d) {
                 return Math.sqrt(d.numOfLinks/Math.PI)*10
             })
             .style("fill", "rgb(160,160,160)")
-            .call(force.drag);
+
+        node.append("text")
+            .attr("class", "nodetext")
+            .attr("text-anchor", "middle")
+
+            .text(function(d) { return d.key });
 
         force.on("tick", function() {
             edge.attr("x1", function(d) { return d.source.x; })
@@ -89,12 +114,26 @@ function initialsetup() {
                 .attr("x2", function(d) { return d.target.x; })
                 .attr("y2", function(d) { return d.target.y; });
 
-            node.attr("cx", function(d) { return d.x; })
-                .attr("cy", function(d) { return d.y; });
-
+            node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
         });
 
+
+        function mousedown() {
+            console.log("mousedown");
+        }
+
+        function mousemove() {
+            console.log("mousemove");
+        }
+        function mouseup() {
+            console.log("mouseup");
+        }
+        function rescale() {
+            console.log("rescale");
+        }
+
     });
+
 
 }
 
