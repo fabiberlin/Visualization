@@ -29,7 +29,8 @@ function initialsetup() {
             //console.log("node id: "+node.getAttribute("id"));
             return {
                 id: node.getAttribute("id"),
-                key: node.querySelector("data").textContent
+                key: node.querySelector("data").textContent,
+                numOfLinks: 0
 
             };
         });
@@ -42,6 +43,15 @@ function initialsetup() {
                 weight: edge.querySelector("data").textContent
             };
         });
+
+        for (var i = 0; i < edges.length; i++){
+            var source = edges[i].source;
+            var target = edges[i].target
+            nodes[source].numOfLinks++;
+            nodes[target].numOfLinks++;
+
+        }
+
         console.log(nodes);
         console.log(edges);
 
@@ -56,13 +66,21 @@ function initialsetup() {
         var edge = svg.selectAll(".link")
             .data(edges)
             .enter().append("line")
-            .attr("class", "link");
+            .attr("class", "link")
+            .style("stroke", "rgb(190,190,190)")
+            .style("stroke-width", function (d) {
+                return d.weight;
+            });
+
 
         var node = svg.selectAll(".node")
             .data(nodes)
             .enter().append("circle")
             .attr("class", "node")
-            .attr("r", 5)
+            .attr("r", function (d) {
+                return Math.sqrt(d.numOfLinks/Math.PI)*10
+            })
+            .style("fill", "rgb(160,160,160)")
             .call(force.drag);
 
         force.on("tick", function() {
