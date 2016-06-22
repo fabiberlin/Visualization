@@ -2,6 +2,7 @@ var svg;
 var width;
 var height;
 var fill = d3.scale.category20();
+var nodeClick = false;
 
 function main() {
 
@@ -52,16 +53,14 @@ function initialsetup() {
             .append("svg:svg")
             .attr("width", width)
             .attr("height", height)
+            .on("mouseup", mouseUp)
             .attr("pointer-events", "all");
+
 
         var vis = outer
             .append('svg:g')
             .call(d3.behavior.zoom().on("zoom", rescale))
-            .on("dblclick.zoom", null)
-            .append('svg:g')
-            .on("mousemove", mousemove)
-            .on("mousedown", mousedown)
-            .on("mouseup", mouseup);
+            .append('svg:g');
 
         vis.append('svg:rect')
             .attr('width', width)
@@ -93,7 +92,10 @@ function initialsetup() {
             .data(nodes)
             .enter().append("g")
             .attr("class", "node")
-            .call(force.drag);
+                .on("mousedown", mouseDown)
+                .on("mouseup", mouseUp)
+            //.call(force.drag)
+        ;
 
         node.append("circle")
             .attr("class", "node")
@@ -118,19 +120,28 @@ function initialsetup() {
         });
 
 
-        function mousedown() {
-            console.log("mousedown");
+        function rescale() {
+            if (!nodeClick){
+                console.log("rescale");
+                trans=d3.event.translate;
+                scale=d3.event.scale;
+
+                vis.attr("transform",
+                    "translate(" + trans + ")"
+                    + " scale(" + scale + ")");
+            }
         }
 
-        function mousemove() {
-            console.log("mousemove");
+        function mouseDown() {
+            console.log("mouseDown");
+            nodeClick=true;
         }
-        function mouseup() {
-            console.log("mouseup");
+
+        function mouseUp() {
+            console.log("mouseUp");
+            nodeClick=false;
         }
-        function rescale() {
-            console.log("rescale");
-        }
+
 
     });
 
